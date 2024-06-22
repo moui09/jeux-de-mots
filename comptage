@@ -1,0 +1,42 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class comptage {
+
+    public static void main(String[] args) {
+        // Chemin vers le fichier à lire
+        String filePath = "https://github.com/moui09/jeux-de-mots/new/main";
+        
+        int totalmots = 0;
+        
+        try {
+            // Créer un Scanner pour lire le fichier
+            File file = new File(filePath);
+            Scanner scanner = new Scanner(file);
+            
+            // Lecture ligne par ligne
+            while (scanner.hasNextLine()) {
+                String ligne = scanner.nextLine();
+                
+                // Séparation de la ligne en mots
+                String[] mots = ligne.split(" ");
+                
+                // Comptage des mots dans cette ligne
+                int motsdansligne = mots.length;
+                
+                // Ajout au total des mots
+                totalmots += motsdansligne;
+            }
+            
+            // Fermeture du scanner
+            scanner.close();
+            
+            // Affichage du nombre total de mots
+            System.out.println("Le nombre total de mots dans le fichier est : " + totalmots);
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Le fichier spécifié est introuvable : " + e.getMessage());
+        }
+    }
+}
